@@ -1,5 +1,11 @@
+import Header from './ui/Header'
+
 function Home() {
-  return <p>Home</p>
+  return (
+    <>
+      <Header session={null} />
+    </>
+  )
 }
 
 export default Home
