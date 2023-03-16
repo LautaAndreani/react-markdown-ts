@@ -1,0 +1,59 @@
+{
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNjc4OTY5NTc4LCJzdWIiOiJkYzhjODk5Mi1mN2JiLTRlMTYtYmU5ZC0yNTM2NzcwMTk3N2IiLCJlbWFpbCI6ImxhdXRhcm9hbmRyZWFuaTIwMTZAZ21haWwuY29tIiwicGhvbmUiOiIiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJnaXRodWIiLCJwcm92aWRlcnMiOlsiZ2l0aHViIl19LCJ1c2VyX21ldGFkYXRhIjp7ImF2YXRhcl91cmwiOiJodHRwczovL2F2YXRhcnMuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3UvNzkxNTQ0NDI_dj00IiwiZW1haWwiOiJsYXV0YXJvYW5kcmVhbmkyMDE2QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJmdWxsX25hbWUiOiJMYXV0YXJvIEFuZHJlYW5pIiwiaXNzIjoiaHR0cHM6Ly9hcGkuZ2l0aHViLmNvbSIsIm5hbWUiOiJMYXV0YXJvIEFuZHJlYW5pIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiTGF1dGFBbmRyZWFuaSIsInByb3ZpZGVyX2lkIjoiNzkxNTQ0NDIiLCJzdWIiOiI3OTE1NDQ0MiIsInVzZXJfbmFtZSI6IkxhdXRhQW5kcmVhbmkifSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJhYWwiOiJhYWwxIiwiYW1yIjpbeyJtZXRob2QiOiJvYXV0aCIsInRpbWVzdGFtcCI6MTY3ODkyNjcxOH1dLCJzZXNzaW9uX2lkIjoiYzQzM2YzM2MtZGQ1Yy00Y2ViLWIyODEtMTJmOGYzZDNiMWFjIn0.frl9MLBe6ASz0_o5kDp_Hh34v6YDiSPyTy49zjOGZw4",
+    "token_type": "bearer",
+    "expires_in": 3600,
+    "refresh_token": "idEG_2KaKdcGvcqw6PWrcw",
+    "user": {
+        "id": "dc8c8992-f7bb-4e16-be9d-25367701977b",
+        "aud": "authenticated",
+        "role": "authenticated",
+        "email": "lautaroandreani2016@gmail.com",
+        "email_confirmed_at": "2023-03-14T22:59:05.113501Z",
+        "phone": "",
+        "confirmed_at": "2023-03-14T22:59:05.113501Z",
+        "last_sign_in_at": "2023-03-16T00:31:58.145005Z",
+        "app_metadata": {
+            "provider": "github",
+            "providers": [
+                "github"
+            ]
+        },
+        "user_metadata": {
+            "avatar_url": "https://avatars.githubusercontent.com/u/79154442?v=4",
+            "email": "lautaroandreani2016@gmail.com",
+            "email_verified": true,
+            "full_name": "Lautaro Andreani",
+            "iss": "https://api.github.com",
+            "name": "Lautaro Andreani",
+            "preferred_username": "LautaAndreani",
+            "provider_id": "79154442",
+            "sub": "79154442",
+            "user_name": "LautaAndreani"
+        },
+        "identities": [
+            {
+                "id": "79154442",
+                "user_id": "dc8c8992-f7bb-4e16-be9d-25367701977b",
+                "identity_data": {
+                    "avatar_url": "https://avatars.githubusercontent.com/u/79154442?v=4",
+                    "email": "lautaroandreani2016@gmail.com",
+                    "email_verified": true,
+                    "full_name": "Lautaro Andreani",
+                    "iss": "https://api.github.com",
+                    "name": "Lautaro Andreani",
+                    "preferred_username": "LautaAndreani",
+                    "provider_id": "79154442",
+                    "sub": "79154442",
+                    "user_name": "LautaAndreani"
+                },
+                "provider": "github",
+                "last_sign_in_at": "2023-03-14T22:59:05.109713Z",
+                "created_at": "2023-03-14T22:59:05.10976Z",
+                "updated_at": "2023-03-16T00:31:58.142347Z"
+            }
+        ],
+        "created_at": "2023-03-14T22:59:05.102296Z",
+        "updated_at": "2023-03-16T11:26:18.935779Z"
+    },
+    "expires_at": 1678969577
+}
