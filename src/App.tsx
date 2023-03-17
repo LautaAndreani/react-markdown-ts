@@ -1,11 +1,19 @@
-import Header from './ui/Header'
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 
-function Home() {
+import Home from "./pages/Home"
+import Notes from "./ui/Notes"
+
+function App() {
   return (
     <>
-      <Header session={null} />
+      <BrowserRouter>
+        <Routes>
+          <Route index path='/' element={<Home />} />
+          <Route path="/notes" element={<Notes/>}/>
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
 
-export default Home
+export default App
