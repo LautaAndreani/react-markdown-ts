@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
 import Home from '../App'
-import Notes from '../ui/Notes'
+import Notes from '../pages/Notes'
 
 const router = createBrowserRouter([
   {

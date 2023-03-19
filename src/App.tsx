@@ -1,7 +1,7 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
 
 import Home from "./pages/Home"
-import Notes from "./ui/Notes"
+import Notes from "./pages/Notes"
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index path='/' element={<Home />} />
-          <Route path="/notes" element={<Notes/>}/>
+          <Route path="/notes" element={<Notes/>} />
         </Routes>
       </BrowserRouter>
     </>
