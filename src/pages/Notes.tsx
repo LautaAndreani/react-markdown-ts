@@ -6,38 +6,41 @@ import Left from '../components/Left'
 import Right from '../components/Right'
 import Header from '../ui/Header'
 import Layout from '../ui/Layout'
-import { useLocalStorage } from '../hooks/useLocalStorage'
 
 import { useUserStore } from '../stores/userStore'
-import { useNavigate } from 'react-router-dom'
+import type { Content } from '../models/response'
+import { useParams } from 'react-router-dom'
 
-function Notes() {
-  const navigate = useNavigate()
-  const [storage, setLocalStorage] = useLocalStorage()
+function Notes (): JSX.Element {
+  // const [storage, setLocalStorage] = useLocalStorage()
+  const [note, setNote] = useState<Content['content']>('')
+  const params = useParams()
   const { user } = useUserStore()
 
   useEffect(() => {
-    async function getContent() {
-      try {
-        const { data, status, error } = await supabase.from('content').select('*').eq('user', user!.user.id)
-        if(status !== 200) throw new Error(error?.message)
-        return data
-      } catch (error) {
-        console.error(error)
+    if (params.noteId !== undefined) {
+      async function getNote (): Promise<void> {
+        try {
+          const { data, status, error } = await supabase.from('content').select('*').eq('task', params.noteId)
+          if (status !== 200) throw new Error(error?.message)
+          setNote(data![0].content) // eslint-disable-line @typescript-eslint/no-non-null-assertion
+          return
+        } catch (error) {
+          if (error instanceof Error) {
+            console.error(error.message)
+          }
+        }
       }
+      getNote()
     }
-    // getContent()
   }, [])
 
-  useEffect(() => {
-    if(!user?.user) return navigate('/')
-  }, [user])
   return (
     <>
-      <Header session={user} />
+      <Header/>
       <Layout
-        leftCol={<Left setLocalStorage={setLocalStorage as (value: string) => void} storage={storage as string} />}
-        rightCol={<Right input={storage as string} session={user} />}
+        leftCol={<Left setLocalStorage={setNote} storage={note} />}
+        rightCol={<Right input={note} session={user} noteId={params.noteId}/>}
       />
     </>
   )

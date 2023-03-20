@@ -1,22 +1,19 @@
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom"
-import Button from "../components/Button"
-import { supabase } from "../db/supabase"
-import { Session } from "../models/session"
-import Dropdown from "./Dropdown"
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import Button from '../components/Button'
+import { supabase } from '../db/supabase'
+import { useUserStore } from '../stores/userStore'
+import Dropdown from './Dropdown'
 
-type Props = {
-  session: Session | null | undefined
-}
-
-function Header({ session }: Props) {
+function Header (): JSX.Element {
   const router = useLocation()
   const navigate = useNavigate()
-  const hasReviewTitle = router.pathname !== '/'
+  const hasReviewTitle = router.pathname.includes('notes')
+  const { user } = useUserStore()
 
-  async function handleSignIn() {
+  async function handleSignIn (): Promise<any> {
     try {
       const { data, error } = await supabase.auth.signInWithOAuth({
-        provider: "github",
+        provider: 'github'
       })
       if (error?.status !== 200) throw new Error(error?.message)
       return data
@@ -25,11 +22,12 @@ function Header({ session }: Props) {
     }
   }
 
-  async function handleSignOut() {
+  async function handleSignOut (): Promise<any> {
     try {
       const { error } = await supabase.auth.signOut()
-      if (error) throw new Error(error?.message)
-      return navigate('/')
+      if (error != null) throw new Error(error?.message)
+      navigate('/')
+      return
     } catch (error) {
       console.error(error)
     }
@@ -43,9 +41,10 @@ function Header({ session }: Props) {
       <div className={`flex items-center ${hasReviewTitle ? 'justify-between' : 'justify-end'}`}>
         {hasReviewTitle && <h3 className='font-medium'>Preview</h3>}
 
-        {session?.user.id ? (
+        {(user !== null)
+          ? (
           <div className="flex items-center">
-            <p>{`Hola ! ${session.user.user_metadata.full_name}`}</p>
+            <p>{`Hola ! ${user?.user.user_metadata.full_name}`}</p>
             <Dropdown>
               <button className="p-4 flex items-center gap-2" role="menuitem" onClick={handleSignOut}>
                 <img src="/sign-out.svg" alt="ícono para cerrar sesión" />
@@ -54,11 +53,12 @@ function Header({ session }: Props) {
             </Dropdown>
           </div>
 
-        ) : (
+            )
+          : (
           <Button event={handleSignIn} hasIcon>
             Iniciar sesión
           </Button>
-        )}
+            )}
       </div>
     </header>
   )

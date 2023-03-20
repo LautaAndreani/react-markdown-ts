@@ -1,4 +1,4 @@
-function Wave() {
+function Wave (): JSX.Element {
   return (
     <>
       <svg width='321' height='17' viewBox='0 0 321 17' fill='none' xmlns='http://www.w3.org/2000/svg'>

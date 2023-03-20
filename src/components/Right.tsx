@@ -1,43 +1,30 @@
-import { useMemo, useState } from "react"
-import { supabase } from "../db/supabase"
-import { Session } from "../models/session"
-import Button from "./Button"
+import { useMemo, useState } from 'react'
 
-type Props = {
+import { supabase } from '../db/supabase'
+
+import type { Session } from '../models/session'
+import { parseRAWInput } from '../utils/utils'
+
+import Button from './Button'
+
+interface Props {
   input: string
   session: Session | null | undefined
+  noteId: string | undefined
 }
 
-function Right({ input, session }: Props) {
+function Right ({ input, session, noteId }: Props): JSX.Element {
   const [sanitizedInput, setSanitizedInput] = useState(input)
 
   useMemo(() => {
-    let newInput = input
-
-    if (newInput.includes("[]"))
-      newInput = newInput.replaceAll(
-        "[]",
-        '<span class="inline-flex rounded w-4 -mb-1 min-w-[20px] min-h-[20px] bg-check_box-bg border-2 border-check_box-border"></span>'
-      )
-    if (newInput.includes("[x]"))
-      newInput = newInput.replaceAll(
-        "[x]",
-        '<span class="inline-flex rounded w-4 -mb-1 min-w-[20px] min-h-[20px] bg-check_box-bg border-2 border-check_box-border"> <img src="/check.svg"/></span>'
-      )
-    if (newInput.includes("- ")) newInput = newInput.replaceAll("- ", "<li>")
-    if (newInput.includes("---")) newInput = newInput.replaceAll("---", '<hr class="mb-4 text-text_area">')
-    if (newInput.includes("\n")) newInput = newInput.replaceAll("\n", "<h5 class='mt-2'>")
-    if (newInput.includes("#")) newInput = newInput.replaceAll("#", "<h1 class='text-3xl font-semibold tracking-wide'>")
-
+    const newInput = parseRAWInput(input)
     setSanitizedInput(newInput)
   }, [input])
 
-  async function handleSave(input: string) {
-    debugger
+  async function handleSave (input: string): Promise<void> {
     try {
-      const { data, error, status } = await supabase
-        .from("content")
-        .insert({ user: session!.user.id, content: input })
+      const { error, status } = await supabase.from('content').insert({ user: session?.user.id, content: input, task: crypto.randomUUID() })
+      if (status !== 201) throw new Error(error?.message)
     } catch (error) {
       console.error(error)
     }
@@ -48,9 +35,15 @@ function Right({ input, session }: Props) {
       <div className='min-h-[90vh] flex flex-col justify-between'>
         <div dangerouslySetInnerHTML={{ __html: sanitizedInput }}></div>
 
+        {(noteId !== undefined && session !== null) &&
         <span className='ml-auto'>
-          {!session  ? null : <Button event={() => handleSave(input)}>Guardar</Button>}
+          <Button event={() => handleSave}>Actualizar</Button>
         </span>
+        }
+        {(noteId === undefined && session !== null) &&
+        <span className='ml-auto'>
+          <Button event={async () => { await handleSave(input) }}>Guardar</Button>
+        </span> }
       </div>
     </>
   )

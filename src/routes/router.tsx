@@ -5,12 +5,12 @@ import Notes from '../pages/Notes'
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
+    element: <Home />
   },
   {
     path: 'notes',
-    element: <Notes />,
-  },
+    element: <Notes />
+  }
 ])
 
 export default router

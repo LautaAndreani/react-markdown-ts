@@ -7,4 +7,16 @@
         font-family: "Inter", sans-serif;
         @apply bg-dark text-white
     }
+
+    *::-webkit-scrollbar {
+        width: 12px;
+      }
+      
+      *::-webkit-scrollbar-track {
+        @apply bg-text_area rounded-md p-4
+      }
+      
+      *::-webkit-scrollbar-thumb {
+        @apply bg-dark rounded-md border-4 border-soft_blue
+      }
 }
