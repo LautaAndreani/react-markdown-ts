@@ -1,6 +1,6 @@
 interface Props {
   children: string | JSX.Element | JSX.Element[]
-  event: React.MouseEventHandler<HTMLButtonElement> | undefined
+  event?: React.MouseEventHandler<HTMLButtonElement> | undefined
   hasIcon?: boolean
 }
 

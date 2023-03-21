@@ -42,20 +42,18 @@ function ListNotes (): JSX.Element {
   useEffect(() => {
     if ((user?.user) === null) navigate('/')
   }, [user])
-
-  function handleAddNewNote (): any {
-    console.log('add new note')
-  }
   return (
         <>
             <Header />
             <section className="w-3/4 mx-auto pt-10 flex justify-between">
                 <h1 className="font-bold text-4xl">Tus notas</h1>
-                <Button event={handleAddNewNote}>
+                <Button>
+                  <Link to='/notes'>
                     <div className='flex items-center gap-2'>
                         <img src="/plus.svg" alt="icono para agregar nueva tarea" />
                         <p>Agregar nueva</p>
                     </div>
+                  </Link>
                 </Button>
             </section>
             {listNotes?.map((note) => (<ul key={note.id} className="w-3/4 mx-auto flex flex-col gap-4">

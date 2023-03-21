@@ -21,10 +21,18 @@ function Right ({ input, session, noteId }: Props): JSX.Element {
     setSanitizedInput(newInput)
   }, [input])
 
-  async function handleSave (input: string): Promise<void> {
+  async function handleSave (): Promise<void> {
     try {
-      const { error, status } = await supabase.from('content').insert({ user: session?.user.id, content: input, task: crypto.randomUUID() })
+      const { error, status } = await supabase.from('content').insert({ user: session?.user.id, content: sanitizedInput, task: crypto.randomUUID() })
       if (status !== 201) throw new Error(error?.message)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  async function handleUpdate (): Promise<void> {
+    try {
+      const { error, status } = await supabase.from('content').update({ content: sanitizedInput }).eq('task', noteId)
+      if (status !== 204) throw new Error(error?.message)
     } catch (error) {
       console.error(error)
     }
@@ -37,12 +45,12 @@ function Right ({ input, session, noteId }: Props): JSX.Element {
 
         {(noteId !== undefined && session !== null) &&
         <span className='ml-auto'>
-          <Button event={() => handleSave}>Actualizar</Button>
+          <Button event={async () => { await handleUpdate() }}>Actualizar</Button>
         </span>
         }
         {(noteId === undefined && session !== null) &&
         <span className='ml-auto'>
-          <Button event={async () => { await handleSave(input) }}>Guardar</Button>
+          <Button event={async () => { await handleSave() }}>Guardar</Button>
         </span> }
       </div>
     </>
