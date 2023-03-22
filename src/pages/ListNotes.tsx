@@ -57,10 +57,12 @@ function ListNotes (): JSX.Element {
                 </Button>
             </section>
             {listNotes?.map((note) => (<ul key={note.id} className="w-3/4 mx-auto flex flex-col gap-4">
-                <span className='max-h-[120px] overflow-auto p-4 hover:bg-text_area transition rounded-md mt-6'>
-                    <small className='my-4 text-[#a8a8a8]'>{parseDate(note.created_at)}</small>
-                    <Link to={`/notes/${note.task}`} dangerouslySetInnerHTML={{ __html: parseRAWInput(note.content) }}></Link>
+              <Link to={`/notes/${note.task}`} className="max-h-[120px] overflow-auto p-4 hover:bg-text_area transition rounded-md mt-6">
+                <span>
+                    <small className='my-4 text-[#a8a8a8] block'>{parseDate(note.created_at)}</small>
+                    <span dangerouslySetInnerHTML={{ __html: parseRAWInput(note.content) }}></span>
                 </span>
+              </Link>
             </ul>))}
         </>
   )
