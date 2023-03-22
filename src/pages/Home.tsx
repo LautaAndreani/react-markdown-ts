@@ -36,7 +36,7 @@ function Home (): JSX.Element {
   }, [])
 
   useEffect(() => {
-    if ((user?.user) != null) {
+    if (user?.user) {
       navigate(`/list/${user.user.user_metadata.user_name.toLowerCase()}`)
     }
   }, [user])
