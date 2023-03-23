@@ -23,7 +23,7 @@ function Right ({ input, session, noteId }: Props): JSX.Element {
 
   async function handleSave (): Promise<void> {
     try {
-      const { error, status } = await supabase.from('content').insert({ user: session?.user.id, content: sanitizedInput, task: crypto.randomUUID() })
+      const { error, status } = await supabase.from('content').insert({ user: session?.user.id, content: input, task: crypto.randomUUID() })
       if (status !== 201) throw new Error(error?.message)
     } catch (error) {
       console.error(error)
@@ -31,7 +31,7 @@ function Right ({ input, session, noteId }: Props): JSX.Element {
   }
   async function handleUpdate (): Promise<void> {
     try {
-      const { error, status } = await supabase.from('content').update({ content: sanitizedInput }).eq('task', noteId)
+      const { error, status } = await supabase.from('content').update({ content: input }).eq('task', noteId)
       if (status !== 204) throw new Error(error?.message)
     } catch (error) {
       console.error(error)
