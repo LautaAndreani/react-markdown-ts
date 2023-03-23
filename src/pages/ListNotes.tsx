@@ -12,6 +12,7 @@ import { parseDate, parseRAWInput } from '../utils/utils'
 
 import Button from '../components/Button'
 import Header from '../ui/Header'
+import Dropdown from '../ui/Dropdown'
 
 function ListNotes (): JSX.Element {
   const [listNotes, setListNotes] = useState<Content[]>([])
@@ -42,6 +43,20 @@ function ListNotes (): JSX.Element {
   useEffect(() => {
     if ((user?.user) === null) navigate('/')
   }, [user])
+
+  async function handleDelete (taskId: string): Promise<any> {
+    try {
+      const { error } = await supabase
+        .from('content')
+        .delete()
+        .eq('task', taskId)
+      if (error) throw new Error(error.message)
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error(error.message)
+      }
+    }
+  }
   return (
         <>
             <Header />
@@ -56,10 +71,20 @@ function ListNotes (): JSX.Element {
                   </Link>
                 </Button>
             </section>
-            {listNotes?.map((note) => (<ul key={note.id} className="w-3/4 mx-auto flex flex-col gap-4">
-              <Link to={`/notes/${note.task}`} className="max-h-[120px] overflow-auto p-4 hover:bg-text_area transition rounded-md mt-6">
+            {listNotes?.map((note) => (<ul key={note.id} className="w-3/4 mx-auto flex flex-col gap-2 mt-8">
+              <div className='flex items-center justify-between'>
+                <small className='mt-2 text-[#a8a8a8]'>
+                  {parseDate(note.created_at)}
+                </small>
+                <Dropdown>
+                  <button className="p-4 flex items-center gap-2 text-red" role="menuitem" onClick={async () => { await handleDelete(note.task) }}>
+                    <img src="/trash.svg" alt="ícono para cerrar sesión" />
+                      Eliminar
+                  </button>
+                </Dropdown>
+              </div>
+              <Link to={`/notes/${note.task}`} className="max-h-[120px] overflow-auto hover:bg-text_area transition rounded-md min-h-[120px] p-2">
                 <span>
-                    <small className='my-4 text-[#a8a8a8] block'>{parseDate(note.created_at)}</small>
                     <span dangerouslySetInnerHTML={{ __html: parseRAWInput(note.content) }}></span>
                 </span>
               </Link>

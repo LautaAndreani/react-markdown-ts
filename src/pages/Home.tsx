@@ -32,7 +32,7 @@ function Home (): JSX.Element {
       }
     }
 
-    void getSession()
+    getSession()
   }, [])
 
   useEffect(() => {

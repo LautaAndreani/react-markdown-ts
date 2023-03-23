@@ -8,6 +8,7 @@ module.exports = {
       white: '#E1E2E7',
       soft_blue: '#6A9EA7',
       text_area: '#262D3A',
+      red: '#FE6262',
       check_box: {
         bg: '#272626',
         border: '#494949'
