@@ -41,10 +41,7 @@ function ListNotes (): JSX.Element {
 
   async function handleDelete (taskId: string): Promise<any> {
     try {
-      const { error } = await supabase
-        .from('content')
-        .delete()
-        .eq('task', taskId)
+      const { error } = await supabase.from('content').delete().eq('task', taskId)
       if (error) throw new Error(error.message)
     } catch (error) {
       if (error instanceof Error) {
