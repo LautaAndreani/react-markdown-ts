@@ -13,8 +13,7 @@ function Header (): JSX.Element {
   async function handleSignIn (): Promise<any> {
     try {
       const { data, error } = await supabase.auth.signInWithOAuth({
-        provider: 'github',
-        options: { redirectTo: import.meta.env.DEV ? 'http://127.0.0.1:5173/' : 'https://react-markdown-notes.vercel.app/' }
+        provider: 'github'
       })
       if (error?.status !== 200) throw new Error(error?.message)
       return data
