@@ -41,7 +41,7 @@ function ListNotes (): JSX.Element {
   }, [])
 
   useEffect(() => {
-    if ((user?.user) === null) navigate('/')
+    if (!user?.user) navigate('/')
   }, [user])
 
   async function handleDelete (taskId: string): Promise<any> {
