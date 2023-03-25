@@ -25,12 +25,13 @@ function Home (): JSX.Element {
       <div className='sticky top-0'>
         <Header/>
       </div>
-      <h1 className='font-bold text-6xl text-center leading-[77px] text-white mt-16 p-4'>
+      <h1 className='font-bold text-6xl text-center leading-[77px] text-white mt-16 p-4 relative z-20'>
         Toma notas de una manera elegante
         <span className='flex w-fit flex-col mx-auto items-end'>
           utilizando Markdown
           <Wave />
         </span>
+        <img src="/bg-gradient.svg" className='absolute -top-[100px] -z-10 pointer-events-none h-fit w-max hidden left-12 xl:left-96 lg:flex' alt="forma degradado pagina de inicio" />
       </h1>
       <div className='flex justify-center mt-16 p-4'>
         <img src='/home-preview.svg' alt='picture markdown preview' className="rounded-b-md" />
