@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { supabase } from '../db/supabase'
 
@@ -17,7 +17,6 @@ import Dropdown from '../ui/Dropdown'
 function ListNotes (): JSX.Element {
   const [listNotes, setListNotes] = useState<Content[]>([])
 
-  const navigate = useNavigate()
   const { user } = useUserStore()
   const isLocal = import.meta.env.DEV
 
@@ -37,12 +36,8 @@ function ListNotes (): JSX.Element {
         console.error(error)
       }
     }
-    if (user?.user.id) getContent()
+    getContent()
   }, [])
-
-  useEffect(() => {
-    if (!user?.user) navigate('/')
-  }, [user])
 
   async function handleDelete (taskId: string): Promise<any> {
     try {

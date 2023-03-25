@@ -13,7 +13,6 @@ import type { Content } from '../models/response'
 import { useParams } from 'react-router-dom'
 
 function Notes (): JSX.Element {
-  // const [storage, setLocalStorage] = useLocalStorage()
   const [note, setNote] = useState<Content['content']>('')
   const [loading, setLoading] = useState<boolean | null>(null)
   const params = useParams()

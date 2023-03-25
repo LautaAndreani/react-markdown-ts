@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import ProtectedRoute from './components/ProtectedRoute'
 
 import Home from './pages/Home'
 import ListNotes from './pages/ListNotes'
@@ -9,10 +10,28 @@ function App (): JSX.Element {
     <>
       <BrowserRouter>
         <Routes>
-          <Route index path='/' element={<Home />} />
-          <Route path='/list/:userId' element={<ListNotes/>} />
-          <Route path='/notes/:noteId' element={<Notes/>} />
-          <Route path='/notes' element={<Notes/>} />
+          <Route index path="/" element={<Home />} />
+          <Route
+            path="/list/:userId"
+            element={
+              <ProtectedRoute>
+                <ListNotes />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/notes/:noteId"
+            element={
+              <ProtectedRoute>
+                <Notes />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/notes" element={
+            <ProtectedRoute>
+              <Notes/>
+            </ProtectedRoute>
+          } />
         </Routes>
       </BrowserRouter>
     </>
