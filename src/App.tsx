@@ -11,27 +11,11 @@ function App (): JSX.Element {
       <BrowserRouter>
         <Routes>
           <Route index path="/" element={<Home />} />
-          <Route
-            path="/list/:userId"
-            element={
-              <ProtectedRoute>
-                <ListNotes />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/notes/:noteId"
-            element={
-              <ProtectedRoute>
-                <Notes />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/notes" element={
-            <ProtectedRoute>
-              <Notes/>
-            </ProtectedRoute>
-          } />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/list/:userId" element={<ListNotes />} />
+            <Route path="/notes/:noteId" element={<Notes />} />
+            <Route path="/notes" element={<Notes />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>
