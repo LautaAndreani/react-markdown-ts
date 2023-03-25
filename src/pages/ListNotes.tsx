@@ -37,7 +37,7 @@ function ListNotes (): JSX.Element {
         console.error(error)
       }
     }
-    getContent()
+    if (user?.user.id) getContent()
   }, [])
 
   useEffect(() => {
