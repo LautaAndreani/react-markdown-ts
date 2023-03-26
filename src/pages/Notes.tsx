@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 import { supabase } from '../db/supabase'
 
@@ -10,9 +11,12 @@ import LayoutSkeleton from '../ui/skeleton/LayoutSkeleton'
 
 import { useUserStore } from '../stores/userStore'
 import type { Content } from '../models/response'
-import { useParams } from 'react-router-dom'
 
-function Notes (): JSX.Element {
+interface Props {
+  defaultInput?: string
+}
+
+function Notes ({ defaultInput = '' }: Props): JSX.Element {
   const [note, setNote] = useState<Content['content']>('')
   const [loading, setLoading] = useState<boolean | null>(null)
   const params = useParams()
@@ -50,10 +54,10 @@ function Notes (): JSX.Element {
 
   return (
     <>
-      <Header/>
+      {!defaultInput && <Header/>}
       <Layout
-        leftCol={<Left setLocalStorage={setNote} storage={note} />}
-        rightCol={<Right input={note} session={user} noteId={params.noteId}/>}
+        leftCol={<Left setLocalStorage={setNote} storage={note || defaultInput} />}
+        rightCol={<Right input={note || defaultInput} session={user} noteId={params.noteId}/>}
       />
     </>
   )

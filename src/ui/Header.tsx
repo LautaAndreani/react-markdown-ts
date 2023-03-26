@@ -33,7 +33,7 @@ function Header (): JSX.Element {
     }
   }
   return (
-    <header className='grid grid-cols-2 items-center py-1 w-10/12 mx-auto mt-1'>
+    <header className='grid grid-cols-1 sm:grid-cols-2 items-center py-1 w-10/12 mx-auto mt-1'>
       <Link to='/' className='flex items-center'>
         <img src='/logo.svg' alt='React markdown' />
         <h1 className='font-medium text-xl ml-2'>React Markdown</h1>

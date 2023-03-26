@@ -17,10 +17,10 @@ export const useUserStore = create<UserStore>((set) => ({
   },
   getSession: async () => {
     try {
-      // if (import.meta.env.DEV) {
-      //   set(() => ({ user: sessionMock }))
-      //   return
-      // }
+      if (import.meta.env.DEV) {
+        set(() => ({ user: sessionMock }))
+        return
+      }
       const { data } = await supabase.auth.getSession()
 
       if (data.session === null) {

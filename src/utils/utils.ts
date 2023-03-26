@@ -25,3 +25,12 @@ export function parseDate (date: string): string {
   const getDate = new Date(date).toLocaleString()
   return getDate
 }
+
+export const defaultContent = `# Frontend Roadmap 
+Pasos a seguir para ser frontend developer en 2023 🤘 
+---
+[x] Aprender HTML & CSS
+[x] Aprender Javascript
+[] Aprender Testing
+[] Aprender Reactjs
+[] Construir proyectos 🚨`
