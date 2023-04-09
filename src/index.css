@@ -13,10 +13,10 @@
       }
       
       *::-webkit-scrollbar-track {
-        @apply bg-text_area rounded-md p-4
+        @apply bg-dark rounded-md p-4
       }
       
       *::-webkit-scrollbar-thumb {
-        @apply bg-dark rounded-md border-4 border-soft_blue
+        @apply bg-text_area rounded-md border-4 border-soft_blue
       }
 }

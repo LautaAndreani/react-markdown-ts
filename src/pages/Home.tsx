@@ -36,7 +36,6 @@ function Home (): JSX.Element {
         <img src="/bg-gradient.svg" className='absolute -top-[100px] -z-10 pointer-events-none h-fit w-max hidden left-12 xl:left-96 lg:flex' alt="forma degradado pagina de inicio" />
       </h1>
       <div className='flex justify-center mt-16 p-4'>
-        {/* <img src='/home-preview.svg' alt='picture markdown preview' className="rounded-b-md" /> */}
         <div className='max-h-[600px] w-full'>
           <Notes defaultInput={defaultContent} />
         </div>
